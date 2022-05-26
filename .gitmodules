@@ -1,0 +1,3 @@
+[submodule "sg/sync_gateway"]
+	path = sg/sync_gateway
+	url = git@github.com:couchbase/sync_gateway.git

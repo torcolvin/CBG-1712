@@ -1,0 +1,14 @@
+{
+  "bootstrap": {
+    "server": "couchbase://cb-server",
+    "username": "Administrator",
+    "password": "password",
+    "use_tls_server": false
+  },
+  "logging": {
+    "console": {
+      "log_level": "debug",
+      "log_keys": ["*"]
+    }
+  }
+}

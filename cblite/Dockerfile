@@ -1,10 +1,14 @@
 FROM debian:bullseye
 
-RUN apt update -y && apt install -y curl unzip
+RUN apt update -y && apt install -y build-essential cmake curl libicu-dev libz-dev git unzip
 
-ARG CBLITE_ZIP=linux-x86_64.zip
+ARG CBLBUILD=couchbase-mobile-tools/cblite/build
 
-RUN curl -L -O https://github.com/couchbaselabs/couchbase-mobile-tools/releases/download/cblite-3.0.0EE-alpha/$CBLITE_ZIP && unzip $CBLITE_ZIP
+RUN git clone --recurse-submodules https://www.github.com/couchbaselabs/couchbase-mobile-tools.git
+
+RUN mkdir -p ${CBLBUILD} && cd ${CBLBUILD} && cmake .. && cmake --build . --parallel 4
+
+ENV PATH="${CBLBUILD}:${PATH}"
 
 RUN cblite --help
 

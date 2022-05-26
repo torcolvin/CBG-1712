@@ -1,8 +1,13 @@
-FROM couchbase/server:7.1.0-aarch64
+FROM couchbase/server:7.1.0
 
-RUN ./entrypoint.sh couchbase-server &
+#RUN yum update -y && yum install -y jq
+RUN apt update -y && apt install -y jq
 
-COPY ./bootstrap_db.sh /bootstrap_db.sh
+RUN jq -h
 
-RUN ["/bin/bash", "/bootstrap_db.sh"]
+COPY ./server-sandbox/scripts/configure-node.sh /etc/service/config-couchbase/run
+RUN chown -R couchbase:couchbase /etc/service
+COPY ./server-sandbox/scripts/create-index.json /opt/couchbase
 
+HEALTHCHECK  --start-period=15s  \
+	CMD couchbase-cli server-info  -u Administrator -p password -c http://localhost:8091 || exit 1

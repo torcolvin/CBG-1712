@@ -1,3 +1,6 @@
 [submodule "sg/sync_gateway"]
 	path = sg/sync_gateway
 	url = git@github.com:couchbase/sync_gateway.git
+[submodule "cb-server/server-sandbox"]
+	path = cb-server/server-sandbox
+	url = https://github.com/couchbase/server-sandbox.git

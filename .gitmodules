@@ -4,3 +4,6 @@
 [submodule "cb-server/server-sandbox"]
 	path = cb-server/server-sandbox
 	url = https://github.com/couchbase/server-sandbox.git
+[submodule "sg/go-blip"]
+	path = sg/go-blip
+	url = https://github.com/couchbase/go-blip.git
